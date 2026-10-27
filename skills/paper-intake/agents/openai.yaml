@@ -1,0 +1,4 @@
+interface:
+  display_name: "论文精读与 Obsidian 入库"
+  short_description: "关联 PDF、个人笔记与 AI 图文笔记，核对论文编号并更新目录和标签。"
+  default_prompt: "使用 $paper-intake 将这篇论文精读并导入我指定的 Obsidian 文献阅读工作台。"
