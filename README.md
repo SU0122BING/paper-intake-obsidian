@@ -16,57 +16,44 @@
 >
 > 本 README 提供中英文说明；工作台模板、插件界面和目录名称目前仍为中文。请保留示例中的实际路径，不要按英文释义重命名文件夹。
 
-## 适合什么场景
+## 推荐：把这段话发给 Codex，帮你完成安装
 
-- 每次读论文都要分别创建 PDF、AI 笔记和个人笔记，希望减少整理工作。
-- 希望 AI 提供阅读参考，同时保留自己的理解、批注与质疑。
-- 希望有一份持续更新的论文总列表，并按主题、方法等标签检索。
-- 有时手动导入文件，希望下一次 AI 入库能识别现有记录并续接编号。
-
-## 能完成什么
-
-| 操作 | 执行者 | 结果 |
-| --- | --- | --- |
-| 把论文链接或 PDF 发给 AI，并要求精读入库 | paper-intake + DeepPaperNote | 精读、图片检查、正式保存及入库关联 |
-| 手动将 PDF 放进 `10 文献/PDF` | Obsidian 文献助手，需启用 | 补建个人阅读主页、刷新目录；不调用 AI |
-| 添加或修改阅读主页的 tags/status | Obsidian 文献助手 | 刷新论文标签和阅读状态 |
-| 核对与补齐论文编号 | 执行 skill 的 agent | 同一论文的 PDF、主页和 AI 归档沿用编号 |
-| Obsidian 关闭时刷新目录 | `intake.py refresh` | 更新已有阅读主页的关联区、目录与标签 |
-
-**尚未实现**：EndNote 自动同步、后台无人值守精读、插件独立编号、跨设备自动同步。`intake.py` 是关联工具，不是“一条命令自动生成论文笔记”的模型程序。
-
-## 工作台长什么样
+**没有开发经验，也可以从这里开始。** 打开能够访问本地文件、执行命令的 Codex，把下面整段话复制过去。你不需要先理解终端命令。
 
 ```text
-文献阅读工作台/
-├── 00 收件箱/
-│   └── 随手记.md
-├── 10 文献/
-│   ├── 文献入口.md
-│   ├── 文献目录.md
-│   ├── 标签索引.md
-│   ├── PDF/
-│   ├── 阅读笔记/
-│   ├── AI辅助阅读/          # 每篇论文保留自己的 images/
-│   └── 阅读工具/
-│       ├── 使用说明.md
-│       ├── 模板/
-│       ├── 附件/
-│       └── 论文入库登记.json
-└── .obsidian/               # 隐藏的设置和本地文献助手
+请帮我安装这个项目：
+https://github.com/SU0122BING/paper-intake-obsidian
+
+我没有开发经验，请你直接协助完成安装：
+1. 先阅读仓库 README 和 skills/paper-intake/SKILL.md，检查电脑系统、Obsidian、Python 及已有的相关 skill。
+2. 按项目和上游说明安装缺少的 paper-intake、DeepPaperNote 及必要依赖；使用隔离的 Python 环境，并记住后续应该使用的解释器路径。
+3. 在桌面建立「文献阅读工作台」，可以使用仓库提供的完整 ZIP 或初始化脚本。已有同名工作台时先识别，不要覆盖或重复创建。
+4. 读取已有配置，将这次工作的目标明确指向新工作台，AI 笔记放在「10 文献/AI辅助阅读」，输出语言使用中文。保留我的其他文件和已有配置，说明需要调整的设置。
+5. 验证 skill 是否可发现、依赖是否可用、工作台配置与文献助手是否齐全，以及保存路径是否正确；不要仅以文件下载成功作为安装完成。
+6. 告诉我如何在 Obsidian 打开工作台、启用文献助手，以及如何发起第一篇论文的精读入库。
+
+需要我登录、授权或在界面操作时，请一次只指导一步；遇到不支持的环境，请说明具体原因。
 ```
 
-每篇论文以个人阅读主页为入口：从这里打开原文、查看 AI 精读，并写下自己的判断。AI 原稿保持独立，便于区分来源和复核。
+需要使用能操作你电脑的 Codex 环境。只把链接发给没有本地文件和命令权限的聊天窗口，无法直接在电脑上安装。下载、系统授权和 Obsidian 界面操作可能仍需要你配合。
 
-## 直接下载现成工作台
+**安装后你只需做两件事**：在 Obsidian 打开工作台；把论文链接或 PDF 发给 Codex，并要求使用 `$paper-intake` 精读入库。
+
+## 只想先体验？下载现成工作台
 
 不需要手动创建文件夹，也不需要先运行 Python。下载本仓库 [现成的文献阅读工作台 ZIP](downloads/文献阅读工作台.zip)，解压后在 Obsidian 中选择「打开文件夹作为仓库」，选择解压得到的 **文献阅读工作台** 文件夹，然后进入 `10 文献/文献入口`。
 
 首次打开时启用附带的「学术文献助手」。ZIP 已保留 `.obsidian` 配置，文件夹布局、个人笔记模板、目录和标签索引均已准备好。里面不包含真实论文与私人记录。不要将它覆盖到已有同名工作台中。
 
-这份 ZIP 提供本地阅读与整理环境。需要 **AI 精读并入库** 时，还须按下面步骤安装 `paper-intake`、DeepPaperNote 和相应 Python 依赖；PDF++ 可另行安装。已经通过 ZIP 创建工作台的用户可以跳过第 3 步初始化命令。
+这份 ZIP 提供本地阅读与整理环境。以后需要 **AI 精读并入库** 时，将上面的安装请求发给 Codex，并告诉它你已经解压好的工作台路径即可，无需再创建一份。PDF++ 可另行安装。
 
-## 安装与开始使用
+## 手动安装（可选）
+
+如果已经让 Codex 安装，或只想先使用 ZIP 工作台，可以跳过这一节。需要自行配置时，再展开查看。
+
+<details>
+<summary>展开手动安装命令与配置说明</summary>
+
 
 ### 1. 准备环境
 
@@ -135,13 +122,58 @@ python <deeppapernote目录>/scripts/user_configuration.py --set-output-language
 
 尖括号是需要替换的说明，不是可原样执行的路径。含空格的实际路径需加引号。`init_vault.py` 不会自行改变任何现有默认库；多库使用时，在每次请求中写明目标路径。
 
-### 5. 导入第一篇论文
+
+</details>
+
+## 安装完成后，导入第一篇论文
 
 把论文链接或 PDF 发给 agent：
 
 > 使用 $paper-intake 精读并导入这篇论文到我的文献阅读工作台。关联 PDF、个人阅读主页和 AI 图文笔记，按现有编号继续，并更新文献目录和标签索引。
 
 首次空库编号从 `001` 开始。若已有手动导入的文件，agent 会先核对身份与已有编号，再补齐变化。
+
+## 适合什么场景
+
+- 每次读论文都要分别创建 PDF、AI 笔记和个人笔记，希望减少整理工作。
+- 希望 AI 提供阅读参考，同时保留自己的理解、批注与质疑。
+- 希望有一份持续更新的论文总列表，并按主题、方法等标签检索。
+- 有时手动导入文件，希望下一次 AI 入库能识别现有记录并续接编号。
+
+## 能完成什么
+
+| 操作 | 执行者 | 结果 |
+| --- | --- | --- |
+| 把论文链接或 PDF 发给 AI，并要求精读入库 | paper-intake + DeepPaperNote | 精读、图片检查、正式保存及入库关联 |
+| 手动将 PDF 放进 `10 文献/PDF` | Obsidian 文献助手，需启用 | 补建个人阅读主页、刷新目录；不调用 AI |
+| 添加或修改阅读主页的 tags/status | Obsidian 文献助手 | 刷新论文标签和阅读状态 |
+| 核对与补齐论文编号 | 执行 skill 的 agent | 同一论文的 PDF、主页和 AI 归档沿用编号 |
+| Obsidian 关闭时刷新目录 | `intake.py refresh` | 更新已有阅读主页的关联区、目录与标签 |
+
+**尚未实现**：EndNote 自动同步、后台无人值守精读、插件独立编号、跨设备自动同步。`intake.py` 是关联工具，不是“一条命令自动生成论文笔记”的模型程序。
+
+## 工作台长什么样
+
+```text
+文献阅读工作台/
+├── 00 收件箱/
+│   └── 随手记.md
+├── 10 文献/
+│   ├── 文献入口.md
+│   ├── 文献目录.md
+│   ├── 标签索引.md
+│   ├── PDF/
+│   ├── 阅读笔记/
+│   ├── AI辅助阅读/          # 每篇论文保留自己的 images/
+│   └── 阅读工具/
+│       ├── 使用说明.md
+│       ├── 模板/
+│       ├── 附件/
+│       └── 论文入库登记.json
+└── .obsidian/               # 隐藏的设置和本地文献助手
+```
+
+每篇论文以个人阅读主页为入口：从这里打开原文、查看 AI 精读，并写下自己的判断。AI 原稿保持独立，便于区分来源和复核。
 
 ## 阅读、编号和标签约定
 
@@ -218,59 +250,46 @@ This project includes an **Agent Skill, a blank Obsidian vault, and a local libr
 >
 > This README is bilingual. The bundled vault, templates, plugin labels, and folder names remain in Chinese. Keep the directory names shown in the commands so that the scripts and plugin can find the expected files.
 
-### Who is this for?
+### Recommended: ask Codex to install it for you
 
-- Readers who want to spend less time organizing PDFs, AI notes, and personal notes separately.
-- Researchers who want AI assistance while retaining their own interpretations, annotations, and questions.
-- Anyone who wants a maintained paper catalog with topic and method tags.
-- Users who sometimes import files manually and want the next agent-assisted intake to reconcile existing records and numbering.
-
-### What it does
-
-| Action | Responsible component | Result |
-| --- | --- | --- |
-| Give the agent a paper link or PDF and request deep reading and intake | paper-intake + DeepPaperNote | Deep reading, figure inspection, formal save, and linked library records |
-| Manually place a PDF in `10 文献/PDF` | Obsidian library helper, when enabled | Creates a missing personal reading page and refreshes the catalog; does not call an AI model |
-| Edit a reading page’s `tags` or `status` | Obsidian library helper | Updates the tag index and reading status |
-| Reconcile and assign paper numbers | The agent executing this skill | Keeps the PDF, personal page, and AI archive under the same paper number |
-| Refresh indexes while Obsidian is closed | `intake.py refresh` | Updates AI reference sections on existing reading pages, the catalog, and the tag index |
-
-**Not implemented:** automatic EndNote synchronization, unattended background deep reading, numbering performed independently by the plugin, or automatic cross-device synchronization. `intake.py` manages associations; it is not a standalone program that generates AI notes with one command.
-
-### Vault structure
-
-The paths below are the actual paths used by the bundled vault. English comments explain their purpose.
+**No development experience is required to start here.** Open a Codex environment that can access local files and execute commands, then copy the entire request below. You do not need to understand terminal commands first.
 
 ```text
-文献阅读工作台/
-├── 00 收件箱/                    # Inbox
-│   └── 随手记.md                 # Quick notes
-├── 10 文献/                      # Literature
-│   ├── 文献入口.md               # Start here
-│   ├── 文献目录.md               # Paper catalog
-│   ├── 标签索引.md               # Tag index
-│   ├── PDF/
-│   ├── 阅读笔记/                 # Personal reading pages
-│   ├── AI辅助阅读/               # AI notes; each paper keeps its own images/
-│   └── 阅读工具/                 # Reading tools and configuration
-│       ├── 使用说明.md           # Usage guide
-│       ├── 模板/                 # Templates
-│       ├── 附件/                 # Attachments
-│       └── 论文入库登记.json     # Intake registry
-└── .obsidian/                    # Obsidian settings and the local helper plugin
+Please help me install this project:
+https://github.com/SU0122BING/paper-intake-obsidian
+
+I have no development experience. Please carry out the setup with me:
+1. Read the repository README and skills/paper-intake/SKILL.md first. Check my operating system, Obsidian, Python, and any existing related skills.
+2. Follow the project and upstream instructions to install any missing paper-intake and DeepPaperNote skills and their required dependencies. Use an isolated Python environment and record the interpreter path for future runs.
+3. Create a reading vault named 文献阅读工作台 on my desktop using the repository's complete vault ZIP or initialization script. If a vault with that name already exists, inspect it first; do not overwrite it or create a duplicate.
+4. Read existing settings and explicitly target the new vault for this workflow. Store AI notes in 10 文献/AI辅助阅读 and use English for the AI output. Preserve my other files and existing configuration, and explain any settings that need adjustment.
+5. Verify skill discovery, dependencies, the vault configuration, the bundled library helper, and the save destination. A successful download alone does not mean setup is complete.
+6. Explain how to open the vault in Obsidian, enable the library helper, and request deep reading and intake of my first paper.
+
+If I need to sign in, grant permission, or use an application interface, guide me one step at a time. If my environment is unsupported, explain the specific blocker.
 ```
 
-Each paper’s personal reading page is the main entry point. Open the PDF, consult the AI analysis, and record your own judgment there. AI originals remain separate so that their source and review status stay clear.
+Use a Codex environment that can work on your computer. A chat without local file access and command execution cannot install the project on your machine from a link alone. Downloads, system permissions, and Obsidian interface steps may still require your participation.
 
-### Download a ready-to-open vault
+The English request above asks for English AI notes; the Chinese request asks for Chinese notes. Neither changes the Chinese vault paths or interface labels.
+
+**After setup, you only need to do two things:** open the vault in Obsidian, and send Codex a paper link or PDF with a request to use `$paper-intake` for deep reading and intake.
+
+### Just want to try the vault? Download it here
 
 You do not need to create the folders manually or run Python first. Download the [ready-to-open reading vault ZIP](downloads/文献阅读工作台.zip), extract it, and choose **Open folder as vault** in Obsidian. Select the extracted **文献阅读工作台** folder, then open `10 文献/文献入口`.
 
 Enable the bundled **学术文献助手** (“Academic Library Helper”) plugin when opening the vault for the first time. The ZIP includes the hidden `.obsidian` settings, folder layout, personal note template, catalog, and tag index. It contains no real papers or private records. Extract it into a new location rather than overwriting an existing vault with the same name.
 
-The ZIP provides a local reading and organization environment. **AI deep reading and intake** additionally require `paper-intake`, DeepPaperNote, and the Python dependencies below. PDF++ is optional and installed separately. If you use the ZIP, skip the vault initialization command in step 3.
+The ZIP provides a local reading and organization environment. When you want **AI deep reading and intake**, send Codex the installation request above and include the path of your already-extracted vault, so it does not create a second copy. PDF++ is optional and installed separately.
 
-### Installation and first use
+### Manual installation — optional
+
+Skip this section if Codex is handling setup or you only want to use the ready-to-open ZIP. Expand it if you prefer to configure things yourself.
+
+<details>
+<summary>Show manual installation commands and configuration</summary>
+
 
 #### 1. Prepare your environment
 
@@ -339,13 +358,60 @@ python <deeppapernote-directory>/scripts/user_configuration.py --set-output-lang
 
 Replace the angle-bracket placeholders with real paths and quote paths containing spaces. `init_vault.py` does not change an existing default vault. When using multiple vaults, specify the destination path in each request.
 
-#### 5. Import your first paper
+
+</details>
+
+### After setup: import your first paper
 
 Give the agent a paper link or PDF and ask:
 
 > Use $paper-intake to deeply read this paper and import it into my Obsidian reading vault. Link the PDF, my personal reading page, and the illustrated AI note. Continue the existing numbering and update the paper catalog and tag index.
 
 Numbering starts at `001` in an empty vault. If files were imported manually, the agent first checks their identities and existing numbers before reconciling them.
+
+### Who is this for?
+
+- Readers who want to spend less time organizing PDFs, AI notes, and personal notes separately.
+- Researchers who want AI assistance while retaining their own interpretations, annotations, and questions.
+- Anyone who wants a maintained paper catalog with topic and method tags.
+- Users who sometimes import files manually and want the next agent-assisted intake to reconcile existing records and numbering.
+
+### What it does
+
+| Action | Responsible component | Result |
+| --- | --- | --- |
+| Give the agent a paper link or PDF and request deep reading and intake | paper-intake + DeepPaperNote | Deep reading, figure inspection, formal save, and linked library records |
+| Manually place a PDF in `10 文献/PDF` | Obsidian library helper, when enabled | Creates a missing personal reading page and refreshes the catalog; does not call an AI model |
+| Edit a reading page’s `tags` or `status` | Obsidian library helper | Updates the tag index and reading status |
+| Reconcile and assign paper numbers | The agent executing this skill | Keeps the PDF, personal page, and AI archive under the same paper number |
+| Refresh indexes while Obsidian is closed | `intake.py refresh` | Updates AI reference sections on existing reading pages, the catalog, and the tag index |
+
+**Not implemented:** automatic EndNote synchronization, unattended background deep reading, numbering performed independently by the plugin, or automatic cross-device synchronization. `intake.py` manages associations; it is not a standalone program that generates AI notes with one command.
+
+### Vault structure
+
+The paths below are the actual paths used by the bundled vault. English comments explain their purpose.
+
+```text
+文献阅读工作台/
+├── 00 收件箱/                    # Inbox
+│   └── 随手记.md                 # Quick notes
+├── 10 文献/                      # Literature
+│   ├── 文献入口.md               # Start here
+│   ├── 文献目录.md               # Paper catalog
+│   ├── 标签索引.md               # Tag index
+│   ├── PDF/
+│   ├── 阅读笔记/                 # Personal reading pages
+│   ├── AI辅助阅读/               # AI notes; each paper keeps its own images/
+│   └── 阅读工具/                 # Reading tools and configuration
+│       ├── 使用说明.md           # Usage guide
+│       ├── 模板/                 # Templates
+│       ├── 附件/                 # Attachments
+│       └── 论文入库登记.json     # Intake registry
+└── .obsidian/                    # Obsidian settings and the local helper plugin
+```
+
+Each paper’s personal reading page is the main entry point. Open the PDF, consult the AI analysis, and record your own judgment there. AI originals remain separate so that their source and review status stay clear.
 
 ### Reading, numbering, and tagging conventions
 
