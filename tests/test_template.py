@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / 'skills/paper-intake/scripts'
@@ -52,6 +53,27 @@ class TemplateTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             init.create_vault(self.vault)
         self.assertTrue(self.vault.is_symlink())
+
+    def test_ready_to_open_download(self):
+        with zipfile.ZipFile(ROOT / 'downloads/文献阅读工作台.zip') as archive:
+            self.assertIsNone(archive.testzip())
+            archive.extractall(self.root)
+        vault = self.root / '文献阅读工作台'
+        self.assertTrue((vault / '.obsidian/plugins/academic-library-helper/main.js').is_file())
+        self.assertEqual(json.loads((vault / '10 文献/阅读工具/论文入库登记.json').read_text())['papers'], {})
+        for folder in ['PDF', '阅读笔记', 'AI辅助阅读']:
+            self.assertTrue((vault / '10 文献' / folder).is_dir())
+        self.assertFalse(list(vault.rglob('*.pdf')))
+
+    def test_visible_source_distribution(self):
+        # Simulate a web upload that skips every hidden file or directory.
+        copy = self.root / 'web-upload'
+        shutil.copytree(ROOT / 'skills', copy / 'skills',
+                        ignore=lambda directory, names: [name for name in names if name.startswith('.') or name == '__pycache__'])
+        subprocess.run([sys.executable, str(copy / 'skills/paper-intake/scripts/init_vault.py'),
+                        '--vault', str(self.vault)], capture_output=True, text=True, check=True)
+        self.assertTrue((self.vault / '.obsidian/plugins/academic-library-helper/main.js').is_file())
+        self.assertTrue((self.vault / '10 文献/PDF').is_dir())
 
     @unittest.skipUnless(shutil.which('node'), 'Node.js is needed for the plugin API mock')
     def test_plugin_in_isolated_vault(self):

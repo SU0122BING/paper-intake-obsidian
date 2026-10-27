@@ -12,7 +12,7 @@ description: 调用 DeepPaperNote 精读论文并导入指定的 Obsidian 工作
 - 在宿主的技能列表中找到并读取 `deeppapernote/SKILL.md`。未安装时说明缺少依赖，按上游说明安装后继续；不能伪称已执行完整精读。
 - 使用 Python 3.10+，确认该解释器可导入 `yaml` 和 DeepPaperNote 所需的 `pymupdf`。不要假定机器上的 `python` 就是正确环境。
 - Vault 使用用户本次明确指定的路径；未指定时按 DeepPaperNote 的官方配置解析流程取得路径。无可用目标时再询问。所有 helper 调用显式带 `--vault`，并与正式保存目标保持一致。
-- 仅在用户要求新建工作台时运行 `scripts/init_vault.py --vault <新目录>`。它拒绝写入已有路径，不迁移已有库，不修改 DeepPaperNote 的全局配置。
+- 仅在用户要求新建工作台时运行 `scripts/init_vault.py --vault <新目录>`。它拒绝写入已有路径，不迁移已有库，不修改 DeepPaperNote 的全局配置。发布源码的设置在 `assets/obsidian-config`，脚本会还原成新库的 `.obsidian` 并创建空目录。若用户已从 ZIP 解压成品工作台，直接使用其路径，不再初始化。
 - 新模板只包含 `00 收件箱` 和 `10 文献`。读取目标库的 `.obsidian/academic-workbench.json` 获取登记和模板路径；阅读版不要创建根目录的 90/99 分区。旧库无此配置时 helper 保留历史默认路径。
 
 ## 单篇论文入库

@@ -5,15 +5,28 @@ import argparse, json, shutil, sys
 
 def create_vault(destination):
     dest = Path(destination).expanduser().absolute()
-    source = Path(__file__).resolve().parents[1] / "assets/vault-template"
+    assets = Path(__file__).resolve().parents[1] / "assets"
+    source = assets / "vault-template"
+    config = assets / "obsidian-config"
     resolved = dest.resolve()
-    if resolved == source or source in resolved.parents:
+    if resolved == assets or assets in resolved.parents:
         raise ValueError("Destination must be outside the packaged template")
     if dest.exists() or dest.is_symlink():
         raise ValueError("Destination already exists; choose a new folder")
     if not dest.parent.is_dir():
         raise ValueError("Destination parent must already exist")
+    required = ['academic-workbench.json', 'app.json', 'appearance.json',
+                'community-plugins.json', 'core-plugins.json', 'templates.json',
+                'plugins/academic-library-helper/main.js',
+                'plugins/academic-library-helper/manifest.json']
+    for name in required:
+        if not (config / name).is_file():
+            raise ValueError('Package configuration missing: ' + name)
     shutil.copytree(source, dest)
+    shutil.copytree(config, dest / '.obsidian')
+    for folder in ['10 文献/PDF', '10 文献/阅读笔记',
+                   '10 文献/AI辅助阅读', '10 文献/阅读工具/附件']:
+        (dest / folder).mkdir(parents=True, exist_ok=True)
     for keep in dest.rglob(".gitkeep"):
         keep.unlink()
     return {"status": "created", "vault": str(dest),

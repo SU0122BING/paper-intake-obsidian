@@ -1,0 +1,9 @@
+{
+  "id": "academic-library-helper",
+  "name": "学术文献助手",
+  "version": "1.2.0",
+  "minAppVersion": "1.5.0",
+  "description": "PDF 建档、DeepPaperNote 入库关联、个人阅读主页与论文标签汇总。",
+  "author": "Local workspace",
+  "isDesktopOnly": true
+}

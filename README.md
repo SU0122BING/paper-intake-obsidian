@@ -50,6 +50,14 @@
 
 每篇论文以个人阅读主页为入口：从这里打开原文、查看 AI 精读，并写下自己的判断。AI 原稿保持独立，便于区分来源和复核。
 
+## 直接下载现成工作台
+
+不需要手动创建文件夹，也不需要先运行 Python。下载本仓库 [现成的文献阅读工作台 ZIP](downloads/文献阅读工作台.zip)，解压后在 Obsidian 中选择「打开文件夹作为仓库」，选择解压得到的 **文献阅读工作台** 文件夹，然后进入 `10 文献/文献入口`。
+
+首次打开时启用附带的「学术文献助手」。ZIP 已保留 `.obsidian` 配置，文件夹布局、个人笔记模板、目录和标签索引均已准备好。里面不包含真实论文与私人记录。不要将它覆盖到已有同名工作台中。
+
+这份 ZIP 提供本地阅读与整理环境。需要 **AI 精读并入库** 时，还须按下面步骤安装 `paper-intake`、DeepPaperNote 和相应 Python 依赖；PDF++ 可另行安装。已经通过 ZIP 创建工作台的用户可以跳过第 3 步初始化命令。
+
 ## 安装与开始使用
 
 ### 1. 准备环境
@@ -91,7 +99,7 @@ PY
 
 如果另一技能目录已安装同名版本，先选定保留哪份，避免重复发现。安装后确认宿主技能列表中同时能找到 `paper-intake` 和 `deeppapernote`。
 
-### 3. 创建空白工作台
+### 3. 创建空白工作台（已解压 ZIP 的用户跳过）
 
 仍在仓库根目录运行。目标父目录须已存在；将路径改为你希望保存的位置：
 
@@ -157,7 +165,8 @@ README.md                     项目介绍、安装与使用
 skills/paper-intake/SKILL.md    Agent 工作流入口
 skills/paper-intake/scripts/    新建工作台、关联与刷新脚本
 skills/paper-intake/references/ 编号迁移规则
-skills/paper-intake/assets/    空白工作台及文献助手源码
+skills/paper-intake/assets/    空白内容模板、可见的 obsidian-config 与插件源码
+downloads/文献阅读工作台.zip   可直接解压打开的完整空白工作台
 tests/                        隔离环境下的行为测试
 docs/发布到GitHub.md           发布操作与版本说明
 THIRD_PARTY.md                依赖来源与署名
@@ -172,6 +181,8 @@ python -m unittest discover -s tests -v
 ```
 
 Python 测试覆盖新库初始化、入库校验、重复关联、个人内容保留、多版本计数及阅读版目录布局；安装 Node.js 后还会运行插件的模拟 Obsidian API 测试。模拟测试不等同于真实桌面 UI 测试，也不重新运行一次真实论文的模型精读。上游升级后应重新验证归档和配置接口。
+
+发布源码中的配置位于普通文件夹 `assets/obsidian-config`，初始化脚本会将其复制为工作台实际需要的 `.obsidian`，并补建空目录。这可以避免网页上传漏掉隐藏文件。直接下载的工作台 ZIP 已包含最终目录结构。
 
 ## 来源与许可
 

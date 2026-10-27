@@ -6,9 +6,9 @@
 
 ## 发布哪些文件
 
-上传本文件所在仓库的完整内容。根目录保留 `README.md`，GitHub 会将其显示为项目首页。`skills/paper-intake` 必须整体上传，包括隐藏的模板设置目录 `.obsidian`。
+上传本文件所在仓库的完整内容。根目录保留 `README.md`，GitHub 会将其显示为项目首页。`skills/paper-intake` 必须整体上传。配置源码放在可见的 `assets/obsidian-config`，初始化时会还原成 `.obsidian`。`downloads/文献阅读工作台.zip` 则保留了完整的成品工作台，包括隐藏配置。
 
-推荐用 Git 提交整个发布目录；只在网页拖动可见文件可能漏掉隐藏设置。不要上传自己的实际工作台，也不要从更高层工作目录执行 `git add .`。
+网页上传时将发布目录里面的内容拖入上传区，勿拖最外层文件夹。Finder 可用 ⌘⇧. 显示根目录的 `.gitignore` 后一并选择。源码模板不再依赖隐藏目录和空目录占位文件。不要上传自己的实际工作台，也不要从更高层工作目录执行 `git add .`。
 
 ## 发布步骤
 
@@ -38,3 +38,9 @@ git push -u origin main
 这是本地 skill 仓库的发布形式，尚不是 Obsidian 社区插件上架或官方 AI 插件目录提交。附带文献助手由模板本地安装。
 
 本包自有部分已放入 MIT LICENSE，署名使用 `Paper Intake contributors`。你可以在首次发布前按希望公开的作者名称调整署名。
+
+## 给读者提供现成工作台
+
+仓库自带 `downloads/文献阅读工作台.zip`，README 已链接。读者打开该文件页面后点击 Download raw file 下载，解压并作为 Obsidian 仓库打开即可。这里的 ZIP 是成品资源，不要在 GitHub 网页上传时把它展开。
+
+也可以在以后创建 GitHub Release 时把同一个 ZIP 作为附件上传，让读者从 Releases 下载；当前不需要先创建 Release。
